@@ -1,0 +1,6 @@
+module Pods_reactRedux_reactReduxTests {
+  umbrella header "Pods-reactRedux-reactReduxTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

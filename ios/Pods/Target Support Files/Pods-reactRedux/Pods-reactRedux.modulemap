@@ -1,0 +1,6 @@
+module Pods_reactRedux {
+  umbrella header "Pods-reactRedux-umbrella.h"
+
+  export *
+  module * { export * }
+}
