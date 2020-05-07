@@ -23,7 +23,7 @@ class store extends React.Component {
 
   render() {
     const {infoData} = this.props;
-    console.log(this.props)
+    console.log(this.props);
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.conceptView}>
@@ -39,12 +39,10 @@ class store extends React.Component {
           data={infoData}
           renderItem={({item}) => {
             return (
-              <View style={styles.card}>
               <View style={styles.FlatListView}>
                 <Text style={styles.conceptName}>{item.storeName}</Text>
                 <Text>{item.storeAddress}</Text>
                 <Text>{item.city}</Text>
-              </View>
               </View>
             );
           }}
@@ -66,24 +64,21 @@ const styles = StyleSheet.create({
     marginHorizontal: 25,
   },
   FlatListView: {
-    //flex: 1,
-    width:'80%',
+    flex: 1,
+    width: '85%',
     padding: 35,
     marginHorizontal: 25,
-  },
-  card:{
-      width:'80%',
-      marginHorizontal:20,
-      marginTop:20,
-    shadowColor: 'red',
+    marginTop: 20,
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.7,
+    shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5,
 
+    elevation: 5,
+    backgroundColor: '#fff',
   },
   headerTxt: {
     fontSize: 30,

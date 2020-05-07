@@ -21,7 +21,9 @@ class search extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    props.searchDatalist(state.keyword, props.header);
+    if (state.keyword.length >= 3) {
+      props.searchDataList(state.keyword, props.header);
+    }
     return 0;
   }
 
@@ -95,7 +97,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  searchDatalist: getSearchData,
+  searchDataList: getSearchData,
 };
 
 export default connect(

@@ -2,7 +2,9 @@ import {SEARCH_DATA} from './constant';
 
 export const getSearchData = (keyword, header) => dispatch => {
   fetch(
-    'https://api-stage.kpktest.axfood.se/axfood/axfood-product-scan/searchResults/App?',
+    'https://api-stage.kpktest.axfood.se/axfood/axfood-product-scan/searchResults/App' +
+      keyword +
+      '?',
     {
       method: 'GET',
       headers: {
