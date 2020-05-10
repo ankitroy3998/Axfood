@@ -7,6 +7,7 @@ import {
   FlatList,
   Image,
   TextInput,
+  TouchableOpacity,
 } from 'react-native';
 
 import {connect} from 'react-redux';
@@ -28,10 +29,16 @@ class search extends React.Component {
   }
 
   render() {
-    const {infoData} = this.props;
+    const {infoData, navigation} = this.props;
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.conceptView}>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('storeList');
+            }}>
+            <Image source={require('../Assets/backarrow.png')} />
+          </TouchableOpacity>
           <TextInput
             style={styles.searchInput}
             placeholder="Search.."
@@ -45,7 +52,14 @@ class search extends React.Component {
           renderItem={({item}) => {
             return (
               <View style={styles.FlatListView}>
-                <Text style={styles.conceptName}>{item.productName}</Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('itemDetail', {data: item});
+                  }}>
+                  <View style={styles.productName}>
+                    <Text>{item.productName}</Text>
+                  </View>
+                </TouchableOpacity>
               </View>
             );
           }}
@@ -69,25 +83,23 @@ const styles = StyleSheet.create({
   FlatListView: {
     flex: 1,
     padding: 35,
-    marginTop: 25,
+    marginTop: 20,
     marginHorizontal: 25,
   },
   searchInput: {
     width: '85%',
     height: 40,
     fontSize: 22,
+    marginLeft: 20,
   },
   headerTxt: {
     fontSize: 30,
     color: '#000',
     fontWeight: 'bold',
   },
-  conceptName: {
+  productName: {
     fontSize: 15,
     fontWeight: 'bold',
-  },
-  addStore: {
-    paddingTop: 10,
   },
 });
 

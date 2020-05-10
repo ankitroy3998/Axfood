@@ -27,6 +27,12 @@ class store extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.conceptView}>
+        <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('concept');
+            }}>
+            <Image source={require('../Assets/backarrow.png')} />
+          </TouchableOpacity>
           <Text style={styles.headerTxt}>Select Store</Text>
           <TouchableOpacity
             onPress={() => {
@@ -40,9 +46,15 @@ class store extends React.Component {
           renderItem={({item}) => {
             return (
               <View style={styles.FlatListView}>
-                <Text style={styles.conceptName}>{item.storeName}</Text>
-                <Text>{item.storeAddress}</Text>
-                <Text>{item.city}</Text>
+                <Text style={styles.conceptName}>
+                  {item.storeName.toUpperCase()}
+                </Text>
+                <Text style={styles.conceptStyle}>
+                  {item.storeAddress.toLowerCase()}
+                </Text>
+                <Text style={styles.conceptStyle}>
+                  {item.city.toLowerCase()}
+                </Text>
               </View>
             );
           }}
@@ -66,9 +78,9 @@ const styles = StyleSheet.create({
   FlatListView: {
     flex: 1,
     width: '85%',
-    padding: 35,
+    padding: 32,
     marginHorizontal: 25,
-    marginTop: 20,
+    marginTop: 15,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -84,14 +96,14 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: '#000',
     fontWeight: 'bold',
+    marginLeft: -50,
   },
   conceptName: {
-    fontSize: 15,
+    fontSize: 16,
+    padding: 8,
     fontWeight: 'bold',
   },
-  addStore: {
-    paddingTop: 10,
-  },
+  conceptStyle: {fontSize: 16, padding: 8},
 });
 
 const mapStateToProps = state => ({

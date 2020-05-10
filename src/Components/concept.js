@@ -7,6 +7,7 @@ import {
   FlatList,
   Image,
   TouchableOpacity,
+  AsyncStorage,
 } from 'react-native';
 
 import {connect} from 'react-redux';
@@ -17,8 +18,21 @@ class data extends React.Component {
     super(props);
   }
 
+  storeLoginData = async () => {
+    try {
+      await AsyncStorage.setItem('header', this.props.header);
+    } catch (error) {
+      console.warn('something went wrong');
+    }
+  };
+  logout = async () => {
+    await AsyncStorage.clear();
+    this.props.navigation.navigate('splash');
+  };
+
   componentDidMount() {
     this.props.conceptDatalist(this.props.header);
+    this.storeLoginData();
   }
 
   render() {
@@ -27,7 +41,12 @@ class data extends React.Component {
       <SafeAreaView style={styles.container}>
         <View style={styles.conceptView}>
           <Text style={styles.headerTxt}>Select Concept</Text>
-          <Image source={require('../Assets/search.png')} />
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('searchList');
+            }}>
+            <Image source={require('../Assets/search.png')} />
+          </TouchableOpacity>
         </View>
         <FlatList
           data={infoData}
@@ -45,6 +64,11 @@ class data extends React.Component {
           }}
           keyExtractor={item => item.id}
         />
+        <TouchableOpacity onPress={() => this.logout()}>
+          <View style={styles.logoutView}>
+            <Text style={styles.logoutTxt}>Logout</Text>
+          </View>
+        </TouchableOpacity>
       </SafeAreaView>
     );
   }
@@ -75,6 +99,15 @@ const styles = StyleSheet.create({
   },
   addStore: {
     paddingTop: 10,
+  },
+  logoutView: {
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  logoutTxt: {
+    fontSize: 20,
+    color: '#e65c00',
+    fontFamily: 'futura-medium',
   },
 });
 

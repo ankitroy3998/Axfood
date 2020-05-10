@@ -4,15 +4,23 @@ import concept from './src/Components/concept';
 import Login from './src/Components/login';
 import storeList from './src/Components/storeList';
 import searchList from './src/Components/searchList';
+import splash from './src/Components/splash';
+import itemDetail from './src/Components/itemDetail';
 
 import * as React from 'react';
 import {Provider} from 'react-redux';
 import store from './src/Services/rootReducer';
+
 const Stack = createStackNavigator();
 
 function MyStack() {
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name="splash"
+        component={splash}
+        options={{header: () => null}}
+      />
       <Stack.Screen
         name="Login"
         component={Login}
@@ -31,6 +39,11 @@ function MyStack() {
       <Stack.Screen
         name="searchList"
         component={searchList}
+        options={{header: () => null}}
+      />
+      <Stack.Screen
+        name="itemDetail"
+        component={itemDetail}
         options={{header: () => null}}
       />
     </Stack.Navigator>
